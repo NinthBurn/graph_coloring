@@ -37,7 +37,7 @@ The algorithm uses a greedy approach to color each vertex, ensuring no adjacent 
 
 
 
-### MPI Implementation
+## MPI Implementation
 - The number of colors is determined by the number of assigned processes
 - Workers (child processes) are assigned specific colors based on their rank, acting like a color bucket
 - They work together by sharing partial solutions with each other to collaboratively find a solution (essentially it's backtracking using multiple processes)
