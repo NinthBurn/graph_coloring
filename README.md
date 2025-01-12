@@ -60,6 +60,11 @@ vertices share the same color.
   later time be complete.
 - Our tasks are run on a work stealing thread pool to incentivise the processor
   to take tasks equally and not starve other threads from work.
+- For each color in the step, we will submit a new task. If it completes, then
+  we will continue to the next vertex on that same task, which will then spawn
+  more tasks for each color of that next vertex.
+- We boot up all tasks at the same time. Then, in a separate loop, we check
+  the results of every call by waiting for the Future to complete.
 
 ### Command line arguments
 - The first argument must be this in order to enable multithreading: `true`
