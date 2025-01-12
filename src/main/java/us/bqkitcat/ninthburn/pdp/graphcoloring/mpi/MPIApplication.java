@@ -5,33 +5,16 @@ import us.bqkitcat.ninthburn.pdp.graphcoloring.common.ColoredGraph;
 import java.util.Arrays;
 
 import mpi.MPI;
+import us.bqkitcat.ninthburn.pdp.graphcoloring.common.ColoredGraphValidator;
 
 public class MPIApplication {
-    public static boolean validateSolution(ColoredGraph graph) {
-        int graphSize = graph.getSize();
-
-        for (int vertex = 0; vertex < graphSize; ++vertex) {
-            int currentColor = graph.getColor(vertex);
-            if(currentColor == -1 )
-                return false;
-
-            for (int neighbor : graph.getNeighbors(vertex)) {
-                int color = graph.getColor(neighbor);
-                if (currentColor == color || color == -1 || color >= graph.colors) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     public static void run(String[] args) {
         MPI.Init(args);
         int rank = MPI.COMM_WORLD.Rank();
         int size = MPI.COMM_WORLD.Size();
 
-        ColoredGraph graph = ColoredGraph.readFromFile("graph.txt");
+        ColoredGraph graph = ColoredGraph.readFromFile("graph_large.txt");
 
         graph.colors = size - 1;
 
@@ -61,7 +44,7 @@ public class MPIApplication {
             System.out.println("Vertex " + i + " -> Color " + graph.getColor(i));
         }
 
-        if(validateSolution(graph))
+        if (ColoredGraphValidator.validateSolution(graph))
             System.out.println("Solution is correct");
         else System.err.println("Solution is not correct");
 

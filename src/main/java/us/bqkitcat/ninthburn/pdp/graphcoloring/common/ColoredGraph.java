@@ -6,9 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ColoredGraph {
+    
     private final List<List<Integer>> adjacencyList;
     private final List<Integer> nodeColors;
     public int colors;
+    
+    private ColoredGraph(List<List<Integer>> adjacencyList, List<Integer> nodeColors, int colors) {
+        this.adjacencyList = adjacencyList;
+        this.nodeColors = nodeColors;
+        this.colors = colors;
+    }
 
     public ColoredGraph(int vertices, int colorCount) {
         this.colors = colorCount;
@@ -20,6 +27,10 @@ public class ColoredGraph {
             nodeColors.add(-1);
 
         }
+    }
+    
+    public ColoredGraph safeClone() {
+        return new ColoredGraph(adjacencyList, new ArrayList<>(nodeColors), colors);
     }
 
     public void addEdge(int u, int v) {
@@ -73,9 +84,14 @@ public class ColoredGraph {
     }
 
     public void setColor(int vertex, int color) {
-        if(color >= colors)
+        if (color >= colors)
             throw new RuntimeException("Tried to color with " + color + " out of " + colors);
 
         nodeColors.set(vertex, color);
     }
+    
+    public boolean isFullyColored() {
+        return nodeColors.stream().allMatch(v -> v != -1);
+    }
+    
 }
