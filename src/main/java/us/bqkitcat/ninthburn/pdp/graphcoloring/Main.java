@@ -7,10 +7,17 @@ import us.bqkitcat.ninthburn.pdp.graphcoloring.singlethread.SinglethreadApplicat
 public class Main {
 
     public static void main(String[] args) {
+        long startTime = System.currentTimeMillis();
+
         if (args.length == 0) {
             System.err.println("The first parameter must be 'false' for multithread mode " +
                     "or anything else for MPJ Express mode.");
             startSinglethread(args);
+
+            long endTime = System.currentTimeMillis();
+            long duration = endTime - startTime;
+
+            System.out.println("Execution time: " + duration + " ms");
             return;
         }
 
@@ -22,6 +29,11 @@ public class Main {
             System.out.println("Running in MPJ Express mode.");
             startMPI(args);
         }
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+
+        System.out.println("Execution time: " + duration + " ms");
     }
 
     public static void startSinglethread(String[] args) {
