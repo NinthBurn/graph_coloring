@@ -1,6 +1,6 @@
 # Graph Coloring
 ### Table of contents
-1. [Overview]
+1. [Overview](#overview)
 2. [Single threaded implementation](#single-threaded-implementation)
 3. [Multithreaded implementation](#multithreaded-implementation)
 4. [MPI implementation](#mpi-implementation)
