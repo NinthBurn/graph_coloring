@@ -14,7 +14,7 @@ public class MPIApplication {
         int rank = MPI.COMM_WORLD.Rank();
         int size = MPI.COMM_WORLD.Size();
 
-        ColoredGraph graph = ColoredGraph.readFromFile("graph_large.txt");
+        ColoredGraph graph = ColoredGraph.readFromFile("graph_medium.txt");
 
         graph.colors = size - 1;
 
