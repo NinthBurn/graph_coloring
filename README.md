@@ -112,6 +112,6 @@ java -jar target/GraphColoring-1.0.0-jar-with-dependencies.jar true 8 graph.txt
 #### Results
 | Method/Time  | Single threaded | Multithreaded | MPI      |
 |--------------|-----------------|---------------|----------|
-| Small graph  | 7ms             | -             | 105ms    |
-| Medium graph | 11ms            | -             | 197ms    |
-| Large graph  | 32ms            | -             | overflow |
+| Small graph  | 7ms             | 25ms          | 105ms    |
+| Medium graph | 11ms            | 571ms         | 197ms    |
+| Large graph  | 32ms            | 45ms          | overflow |
